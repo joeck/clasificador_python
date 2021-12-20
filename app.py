@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter import ttk
 from tkinter import filedialog
+from tkinter import messagebox
 import os
 
 root = Tk()
@@ -29,15 +30,22 @@ def updateSummaryFiles(var, index, mode):
     global odio_files
     global no_odio_files
     if odio_path.get() != "":
-        odio_files = os.listdir(odio_path.get())
-        articles_odio.config(text = str(len(odio_files)))
+        try:
+            odio_files = os.listdir(odio_path.get())
+            articles_odio.config(text = str(len(odio_files)))
+        except FileNotFoundError:
+            messagebox.showwarning("Ivalid Odio path", "The path given is not a correct path to a directory")
     if no_odio_path.get() != "":
-        no_odio_files = os.listdir(no_odio_path.get())
-        articles_no_odio.config(text = str(len(no_odio_files)))
+        try:
+            no_odio_files = os.listdir(no_odio_path.get())
+            articles_no_odio.config(text = str(len(no_odio_files)))
+        except FileNotFoundError:
+            messagebox.showwarning("Ivalid No Odio path", "The path given is not a correct path to a directory")
     articles_total.config(text = str(len(odio_files) + len(no_odio_files)))
 
 def updateSummaryAlgorithm(var, index, mode):
     algorithm_selected.config(text = algorithm.get())
+
 
 # Odio Label
 ttk.Label(trainFrame, text="Noticias de Odio:").grid(column=0, row=0, sticky=W)
