@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter import ttk
 from tkinter import filedialog
+import os
 
 root = Tk()
 
@@ -12,19 +13,37 @@ tabs.add(trainFrame, text="Entrenamiento")
 tabs.add(clasiFrame, text="Clasificacion")
 
 def getOdioDirectory():
+    odio_input.delete(0, 'end')
     odio_input.insert(0, filedialog.askdirectory(title="Elige carpeta Odio"))
 
 def getNoOdioDirectory():
+    no_odio_input.delete(0, 'end')
     no_odio_input.insert(0, filedialog.askdirectory(title="Elige carpeta No Odio"))
 
 def train():
     pass
 
+odio_files = []
+no_odio_files = []
+def updateSummaryFiles(var, index, mode):
+    global odio_files
+    global no_odio_files
+    if odio_path.get() != "":
+        odio_files = os.listdir(odio_path.get())
+        articles_odio.config(text = str(len(odio_files)))
+    if no_odio_path.get() != "":
+        no_odio_files = os.listdir(no_odio_path.get())
+        articles_no_odio.config(text = str(len(no_odio_files)))
+    articles_total.config(text = str(len(odio_files) + len(no_odio_files)))
+
+def updateSummaryAlgorithm(var, index, mode):
+    algorithm_selected.config(text = algorithm.get())
 
 # Odio Label
 ttk.Label(trainFrame, text="Noticias de Odio:").grid(column=0, row=0, sticky=W)
 # Odio path input
 odio_path = StringVar()
+odio_path.trace_add("write", updateSummaryFiles)
 odio_input = ttk.Entry(trainFrame, textvariable=odio_path)
 odio_input.grid(column=1, row=0, columnspan=2, sticky=(W, E))
 # Odio Button
@@ -34,6 +53,7 @@ ttk.Button(trainFrame, text="Abrir", command=getOdioDirectory).grid(column=3, ro
 ttk.Label(trainFrame, text="Noticias de No Odio:").grid(column=0, row=1, sticky=W)
 # Odio path input
 no_odio_path = StringVar()
+no_odio_path.trace_add("write", updateSummaryFiles)
 no_odio_input = ttk.Entry(trainFrame, textvariable=no_odio_path)
 no_odio_input.grid(column=1, row=1, columnspan=2, sticky=(W, E))
 # Odio Button
@@ -43,11 +63,12 @@ ttk.Button(trainFrame, text="Abrir", command=getNoOdioDirectory).grid(column=3, 
 ttk.Label(trainFrame, text="Seleccionar Algoritmo:").grid(column=0, row=2, sticky=W)
 # Algorithm select
 algorithm = StringVar()
+algorithm.trace_add("write", updateSummaryAlgorithm)
 algo_choice = ["1", "2", "3"]
-algo_select = ttk.Combobox(trainFrame, textvariable=algorithm, state="readonly", values=algo_choice).grid(column=1, row=2, sticky=(E,W))
+algo_select = ttk.Combobox(trainFrame, textvariable=algorithm, state="readonly", values=algo_choice)
+algo_select.grid(column=1, row=2, sticky=(E,W))
 # Execute button
 ttk.Button(trainFrame, text="Execute", default="active", command=train).grid(column=2, columnspan=2, row=2, sticky=(E,W))
-
 
 # padding
 for child in trainFrame.winfo_children(): 
@@ -58,10 +79,14 @@ ttk.Label(trainFrame, text="Ejemplares de No Odio:").grid(column=0, row=5, stick
 ttk.Label(trainFrame, text="Total:").grid(column=0, row=6, sticky=W)
 ttk.Label(trainFrame, text="Algoritmo seleccionado:").grid(column=0, row=7, sticky=W)
 
-articles_odio = ttk.Label(trainFrame, text="-").grid(column=1, row=4, sticky=W)
-articles_no_odio = ttk.Label(trainFrame, text="-").grid(column=1, row=5, sticky=W)
-articles_total = ttk.Label(trainFrame, text="-").grid(column=1, row=6, sticky=W)
-algorithm_selected = ttk.Label(trainFrame, text="-").grid(column=1, row=7, sticky=W)
+articles_odio = ttk.Label(trainFrame, text="-")
+articles_odio.grid(column=1, row=4, sticky=W)
+articles_no_odio = ttk.Label(trainFrame, text="-")
+articles_no_odio.grid(column=1, row=5, sticky=W)
+articles_total = ttk.Label(trainFrame, text="-")
+articles_total.grid(column=1, row=6, sticky=W)
+algorithm_selected = ttk.Label(trainFrame, text="-")
+algorithm_selected.grid(column=1, row=7, sticky=W)
 
 # growing
 trainFrame.columnconfigure(0, weight=1, minsize=150)
