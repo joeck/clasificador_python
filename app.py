@@ -2,15 +2,20 @@ from tkinter import *
 from tkinter import ttk
 from tkinter import filedialog
 from tkinter import messagebox
-import os
+import os, re
 
+import nltk
+nltk.download("wordnet")
+nltk.download("omw-1.4")
 from nltk.tokenize import RegexpTokenizer
-from nltk import WordNetLemmatizer
+from nltk.stem import WordNetLemmatizer
+from nltk.stem.snowball import SnowballStemmer
 
-from sklearn.feature_extraction.text import CountVectorizer
-from sklearn.model_selection import train_test_split, cross_val_score, GridSearchCV
-from sklearn.pipeline import Pipeline
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import classification_report, confusion_matrix
+from sklearn.metrics import roc_curve, auc
 
 import pandas as pd
 
@@ -41,30 +46,67 @@ def getNoOdioDirectory():
 def tokenize(x):
     return RegexpTokenizer(r'\w+').tokenize(x.lower())
 
+def removeStopwords(x):
+    with open("stopWords_es.txt") as f:
+        text = f.read()
+        prohibitedWords = text.split("\n")
+        return [word for word in x if not word in prohibitedWords]
+
 def lemmatize(x):
  lemmatizer = WordNetLemmatizer()
  return ' '.join([lemmatizer.lemmatize(word) for word in x])
 
-def generateDF(path):
-    print(path)
-    df = pd.DataFrame({"name": [], "content":[]})
+def stemming(x):
+    stemmer = SnowballStemmer(language="spanish")
+    return ' '.join([stemmer.stem(word) for word in x])
+
+def generateDF(path, label):
+    df = pd.DataFrame({"name": [], "odio": [], "content":[]})
     files = os.listdir(path)
-    print(files)
     for file in files:
         file_path = os.path.join(path, file)
-        print(file_path)
         if os.path.isfile(file_path):
             with open(file_path, 'r', encoding="ISO-8859-1") as f:
-                df = df.append({"name": file, "content": f.read()}, ignore_index=True)
+                df = df.append({"name": file, "odio": label, "content": f.read()}, ignore_index=True)
     return df
 
 
 def train():
-    df = generateDF(odio_input.get())
-    # stopwords
-    df['tokens'] = df['content'].map(tokenize)
-    df['lemma'] = df['tokens'].map(lemmatize)
-    print(df.head())
+    try:
+        df = pd.DataFrame({"name": [], "odio": [], "content":[]})
+        df = df.append(generateDF(odio_input.get(), 1))
+        df = df.append(generateDF(no_odio_input.get(), 0))
+        print(df.head())
+        df['tokens'] = df['content'].map(tokenize)
+        print(df.head())
+        df['tokens'] = df['tokens'].map(removeStopwords)
+        print(df.head())
+        df['lemma'] = df['tokens'].map(stemming)
+        print(df.head())
+        print(df['lemma'])
+
+        X_train, X_test, y_train, y_test = train_test_split(df['lemma'],df['odio'],test_size=0.2,shuffle=True)
+        tfidf_vectorizer = TfidfVectorizer(use_idf=True)
+        X_train_vectors_tfidf = tfidf_vectorizer.fit_transform(X_train) 
+        X_test_vectors_tfidf = tfidf_vectorizer.transform(X_test)
+
+        lr_tfidf=LogisticRegression(solver = 'liblinear', C=10, penalty = 'l2')
+        lr_tfidf.fit(X_train_vectors_tfidf, y_train)
+
+        y_predict = lr_tfidf.predict(X_test_vectors_tfidf)
+        y_prob = lr_tfidf.predict_proba(X_test_vectors_tfidf)[:,1]
+        print(classification_report(y_test,y_predict))
+        print('Confusion Matrix:',confusion_matrix(y_test, y_predict))
+        
+        fpr, tpr, thresholds = roc_curve(y_test, y_prob)
+        roc_auc = auc(fpr, tpr)
+        print('AUC:', roc_auc)
+
+    except FileNotFoundError:
+        messagebox.showwarning("At least one of the paths you provided isn't valid")
+    # except:
+    #     print("Error occured")
+    #     messagebox.showerror("Something went wrong")
 
 odio_files = []
 no_odio_files = []
