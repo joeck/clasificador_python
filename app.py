@@ -74,23 +74,21 @@ def generateDF(path, label):
     return df
 
 def decisionTree(X_train_vector, X_test_vector,y_train, y_test):
-    print("############ decisionTree ############")
+    # print("############ decisionTree ############")
     global clf
     clf = DecisionTreeClassifier()
     clf.fit(X_train_vector,y_train)
     y_pred = clf.predict(X_test_vector)
-    print(confusion_matrix(y_test, y_pred))
-    print(classification_report(y_test, y_pred))
+    # print(confusion_matrix(y_test, y_pred))
     performanceText.insert("1.0", classification_report(y_test, y_pred))
 
 def logisticRegression(X_train_vector, X_test_vector,y_train, y_test):
-    print("############ logisticRegression ############")
+    # print("############ logisticRegression ############")
     global clf
     clf=LogisticRegression(solver = 'liblinear', C=10, penalty = 'l2')
     clf.fit(X_train_vector, y_train)
     y_pred = clf.predict(X_test_vector)
-    print(confusion_matrix(y_test, y_pred))
-    print(classification_report(y_test, y_pred))
+    # print(confusion_matrix(y_test, y_pred))
     performanceText.insert("1.0", classification_report(y_test, y_pred))
 
 def split_transform(x, y):
@@ -116,8 +114,12 @@ def train():
 
         X_train_vectors_tfidf, X_test_vectors_tfidf, y_train, y_test = split_transform(df['lemma'],df['odio'])
 
-        decisionTree(X_train_vectors_tfidf, X_test_vectors_tfidf, y_train, y_test)
-        logisticRegression(X_train_vectors_tfidf, X_test_vectors_tfidf, y_train, y_test)
+        if algo_select.get() == "Decision Tree":
+            decisionTree(X_train_vectors_tfidf, X_test_vectors_tfidf, y_train, y_test)
+        elif algo_select.get() == "Logistic Regression":
+            logisticRegression(X_train_vectors_tfidf, X_test_vectors_tfidf, y_train, y_test)
+        else:
+            messagebox.showinfo("No algorithm", "Please select an algorithm")
 
     except FileNotFoundError:
         messagebox.showwarning("At least one of the paths you provided isn't valid")
@@ -148,9 +150,15 @@ def updateSummaryAlgorithm(var, index, mode):
     algorithm_selected.config(text = algorithm.get())
 
 def saveModel():
-    #filename = 'finalized_model.sav'
-    #pickle.dump(model, open(filename, 'wb'))
-    pass
+    global clf
+    if clf == "":
+        messagebox.showwarning("No model", "Seems like you haven't calculated the model yet")
+    elif model_path_input.get() == "":
+        messagebox.showwarning("No Path", "Seems like you haven't set a path for the model")
+    else:
+        filename = model_path_input.get()
+        pickle.dump(clf, open(filename, 'wb'))
+        messagebox.showinfo("Success", "Model saved successfully!")
 
 # Odio Label
 ttk.Label(trainFrame, text="Noticias de Odio:").grid(column=0, row=0, sticky=W)
@@ -179,7 +187,7 @@ ttk.Label(trainFrame, text="Seleccionar Algoritmo:").grid(column=0, row=2, stick
 # Algorithm select
 algorithm = StringVar()
 algorithm.trace_add("write", updateSummaryAlgorithm)
-algo_choice = ["1", "2", "3"]
+algo_choice = ["Logistic Regression", "Decision Tree", "Naive Bayes"]
 algo_select = ttk.Combobox(trainFrame, textvariable=algorithm, state="readonly", values=algo_choice)
 algo_select.grid(column=1, row=2, sticky=(E,W))
 # Execute button
@@ -208,6 +216,15 @@ algorithm_selected.grid(column=1, row=7, sticky=W)
 ttk.Label(trainFrame, text="Performance:").grid(column=0, row=9, sticky=W)
 performanceText = Text(trainFrame, height=8)
 performanceText.grid(column=1, row=9, sticky=W)
+
+# Save model
+ttk.Label(trainFrame, text="Guardar modelo:").grid(column=0, row=10, sticky=W)
+# No Odio path input
+model_path = StringVar()
+model_path_input = ttk.Entry(trainFrame, textvariable=model_path)
+model_path_input.grid(column=1, row=10, columnspan=2, sticky=(W, E))
+# Odio Button
+ttk.Button(trainFrame, text="Guardar", command=saveModel).grid(column=3, row=10, sticky=E)
 
 # growing
 trainFrame.columnconfigure(0, weight=1, minsize=150)
@@ -253,4 +270,5 @@ root.columnconfigure(0, weight=1)
 root.rowconfigure(0, weight=1)
 no_odio_input.insert(0, "/Users/joelplambeck/Documents/ZHAW/5_Semester/Proyecto Computacion/Plambeck_Joel.PC1.A3/RapidMiner/No odio")
 odio_input.insert(0, "/Users/joelplambeck/Documents/ZHAW/5_Semester/Proyecto Computacion/Plambeck_Joel.PC1.A3/RapidMiner/Odio")
+model_path_input.insert(0, "/Users/joelplambeck/Documents/clasificador_python/model.clf")
 root.mainloop()
