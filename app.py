@@ -189,7 +189,6 @@ ttk.Label(trainFrame, text="Noticias de Odio:").grid(column=0, row=0, sticky=W)
 odio_path = StringVar()
 odio_path.trace_add("write", updateSummaryFiles)
 odio_input = ttk.Entry(trainFrame, textvariable=odio_path)
-#odio_input.insert(0, "/Users/joelplambeck/Documents/ZHAW/5_Semester/Proyecto Computacion/Plambeck_Joel.PC1.A3/RapidMiner/Odio")
 odio_input.grid(column=1, row=0, columnspan=2, sticky=(W, E))
 # Odio Button
 ttk.Button(trainFrame, text="Abrir", command=getOdioDirectory).grid(column=3, row=0, sticky=E)
@@ -200,7 +199,6 @@ ttk.Label(trainFrame, text="Noticias de No Odio:").grid(column=0, row=1, sticky=
 no_odio_path = StringVar()
 no_odio_path.trace_add("write", updateSummaryFiles)
 no_odio_input = ttk.Entry(trainFrame, textvariable=no_odio_path)
-#no_odio_input.insert(0, "/Users/joelplambeck/Documents/ZHAW/5_Semester/Proyecto Computacion/Plambeck_Joel.PC1.A3/RapidMiner/No odio")
 no_odio_input.grid(column=1, row=1, columnspan=2, sticky=(W, E))
 # Odio Button
 ttk.Button(trainFrame, text="Abrir", command=getNoOdioDirectory).grid(column=3, row=1, sticky=E)
@@ -259,6 +257,14 @@ trainFrame.columnconfigure(3, weight=1, minsize=100)
 # ------- Clasificador -----------------------------------
 # --------------------------------------------------------
 
+def getUnlabeledDirectory():
+    noticias_input.delete(0, 'end')
+    noticias_input.insert(0, filedialog.askdirectory(title="Elige carpeta para clasificar"))
+
+def getModel():
+    model_input.delete(0, 'end')
+    model_input.insert(0, filedialog.askopenfilename(title="Elige modelo del clasificador"))
+
 # noticias Label
 ttk.Label(clasiFrame, text="Noticias para clasificar").grid(column=0, row=0, sticky=W)
 # Odio path input
@@ -266,7 +272,7 @@ noticias_path = StringVar()
 noticias_input = ttk.Entry(clasiFrame, textvariable=noticias_path)
 noticias_input.grid(column=1, row=0, columnspan=2, sticky=(W, E))
 # noticias Button
-ttk.Button(clasiFrame, text="Abrir", command=getOdioDirectory).grid(column=3, row=0, sticky=E)
+ttk.Button(clasiFrame, text="Abrir", command=getUnlabeledDirectory).grid(column=3, row=0, sticky=E)
 
 # Model Label
 ttk.Label(clasiFrame, text="Model clasificador:").grid(column=0, row=1, sticky=W)
@@ -275,7 +281,7 @@ model_path = StringVar()
 model_input = ttk.Entry(clasiFrame, textvariable=model_path)
 model_input.grid(column=1, row=1, columnspan=2, sticky=(W, E))
 # model Button
-ttk.Button(clasiFrame, text="Abrir", command=getNoOdioDirectory).grid(column=3, row=1, sticky=E)
+ttk.Button(clasiFrame, text="Abrir", command=getModel).grid(column=3, row=1, sticky=E)
 
 # growing
 clasiFrame.columnconfigure(0, weight=1, minsize=150)
@@ -294,4 +300,6 @@ root.rowconfigure(0, weight=1)
 no_odio_input.insert(0, "/Users/joelplambeck/Documents/ZHAW/5_Semester/Proyecto Computacion/Plambeck_Joel.PC1.A3/RapidMiner/No odio")
 odio_input.insert(0, "/Users/joelplambeck/Documents/ZHAW/5_Semester/Proyecto Computacion/Plambeck_Joel.PC1.A3/RapidMiner/Odio")
 model_path_input.insert(0, "/Users/joelplambeck/Documents/clasificador_python/model.clf")
+noticias_input.insert(0, "/Users/joelplambeck/Documents/ZHAW/5_Semester/Proyecto Computacion/Plambeck_Joel.PC1.A3/RapidMiner/unlabeled")
+model_input.insert(0, "/Users/joelplambeck/Documents/clasificador_python/model.clf")
 root.mainloop()
