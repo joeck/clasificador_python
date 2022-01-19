@@ -16,8 +16,9 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.tree import DecisionTreeClassifier
+from sklearn.naive_bayes import MultinomialNB
+from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.metrics import classification_report, confusion_matrix
-from sklearn.metrics import roc_curve, auc
 
 import pandas as pd
 
@@ -91,6 +92,24 @@ def logisticRegression(X_train_vector, X_test_vector,y_train, y_test):
     # print(confusion_matrix(y_test, y_pred))
     performanceText.insert("1.0", classification_report(y_test, y_pred))
 
+def naiveBayes(X_train_vector, X_test_vector,y_train, y_test):
+    # print("############ naiveBayes ############")
+    global clf
+    clf = MultinomialNB()
+    clf.fit(X_train_vector.toarray(), y_train)
+    y_pred = clf.predict(X_test_vector)
+    # print(confusion_matrix(y_test, y_pred))
+    performanceText.insert("1.0", classification_report(y_test, y_pred))
+
+def gradientBoostedTree(X_train_vector, X_test_vector,y_train, y_test):
+    # print("############ gradientBoostedTree ############")
+    global clf
+    clf = GradientBoostingClassifier()
+    clf.fit(X_train_vector, y_train)
+    y_pred = clf.predict(X_test_vector)
+    # print(confusion_matrix(y_test, y_pred))
+    performanceText.insert("1.0", classification_report(y_test, y_pred))
+
 def split_transform(x, y):
     X_train, X_test, y_train, y_test = train_test_split(x,y,test_size=0.2,shuffle=True)
     tfidf_vectorizer = TfidfVectorizer(use_idf=True)
@@ -118,6 +137,10 @@ def train():
             decisionTree(X_train_vectors_tfidf, X_test_vectors_tfidf, y_train, y_test)
         elif algo_select.get() == "Logistic Regression":
             logisticRegression(X_train_vectors_tfidf, X_test_vectors_tfidf, y_train, y_test)
+        elif algo_select.get() == "Naive Bayes":
+            naiveBayes(X_train_vectors_tfidf, X_test_vectors_tfidf, y_train, y_test)
+        elif algo_select.get() == "Gradient Boosted Tree":
+            gradientBoostedTree(X_train_vectors_tfidf, X_test_vectors_tfidf, y_train, y_test)
         else:
             messagebox.showinfo("No algorithm", "Please select an algorithm")
 
@@ -187,7 +210,7 @@ ttk.Label(trainFrame, text="Seleccionar Algoritmo:").grid(column=0, row=2, stick
 # Algorithm select
 algorithm = StringVar()
 algorithm.trace_add("write", updateSummaryAlgorithm)
-algo_choice = ["Logistic Regression", "Decision Tree", "Naive Bayes"]
+algo_choice = ["Logistic Regression", "Decision Tree", "Naive Bayes", "Gradient Boosted Tree"]
 algo_select = ttk.Combobox(trainFrame, textvariable=algorithm, state="readonly", values=algo_choice)
 algo_select.grid(column=1, row=2, sticky=(E,W))
 # Execute button
