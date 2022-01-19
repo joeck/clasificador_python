@@ -3,7 +3,10 @@ from tkinter import ttk
 from tkinter import Text
 from tkinter import filedialog
 from tkinter import messagebox
+from IPython.display import display
 import os, pickle
+
+from pandas.core.frame import DataFrame
 
 import nltk
 nltk.download("wordnet")
@@ -38,6 +41,7 @@ clasiFrame = ttk.Frame(tabs)
 tabs.add(trainFrame, text="Entrenamiento")
 tabs.add(clasiFrame, text="Clasificacion")
 clf = ""
+tfidf_vectorizer = ""
 
 def getOdioDirectory():
     odio_input.delete(0, 'end')
@@ -111,6 +115,7 @@ def gradientBoostedTree(X_train_vector, X_test_vector,y_train, y_test):
     performanceText.insert("1.0", classification_report(y_test, y_pred))
 
 def split_transform(x, y):
+    global tfidf_vectorizer
     X_train, X_test, y_train, y_test = train_test_split(x,y,test_size=0.2,shuffle=True)
     tfidf_vectorizer = TfidfVectorizer(use_idf=True)
     X_train_vectors_tfidf = tfidf_vectorizer.fit_transform(X_train) 
@@ -181,6 +186,7 @@ def saveModel():
     else:
         filename = model_path_input.get()
         pickle.dump(clf, open(filename, 'wb'))
+        pickle.dump(tfidf_vectorizer, open(filename + "_vector", 'wb'))
         messagebox.showinfo("Success", "Model saved successfully!")
 
 # Odio Label
@@ -264,6 +270,26 @@ def getUnlabeledDirectory():
 def getModel():
     model_input.delete(0, 'end')
     model_input.insert(0, filedialog.askopenfilename(title="Elige modelo del clasificador"))
+    
+def clasify():
+    df = pd.DataFrame({"name": [], "odio": [], "content":[]})
+    df = df.append(generateDF(noticias_input.get(), 1))
+
+    df['tokens'] = df['content'].map(tokenize)
+    df['tokens'] = df['tokens'].map(removeStopwords)
+    df['lemma'] = df['tokens'].map(stemming)
+    print(df.head())
+    result = DataFrame()
+    result["name"] = df["name"].copy()
+
+    if(os.path.isfile(model_input.get())):
+        model = pickle.load(open(model_input.get(), 'rb'))
+        tfidf = pickle.load(open(model_input.get() + "_vector", 'rb'))
+        y_pred = model.predict(tfidf.transform(df["lemma"]))
+        result["prediction"] = y_pred
+        print(result)
+    else:
+        messagebox.showwarning("Modelo no encontrado","No podia cargar el modelo, checka la ruta")
 
 # noticias Label
 ttk.Label(clasiFrame, text="Noticias para clasificar").grid(column=0, row=0, sticky=W)
@@ -282,6 +308,9 @@ model_input = ttk.Entry(clasiFrame, textvariable=model_path)
 model_input.grid(column=1, row=1, columnspan=2, sticky=(W, E))
 # model Button
 ttk.Button(clasiFrame, text="Abrir", command=getModel).grid(column=3, row=1, sticky=E)
+
+# Execute button
+ttk.Button(clasiFrame, text="Execute", default="active", command=clasify).grid(column=2, columnspan=2, row=2, sticky=(E,W))
 
 # growing
 clasiFrame.columnconfigure(0, weight=1, minsize=150)
