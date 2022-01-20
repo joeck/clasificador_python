@@ -1,0 +1,16 @@
+
+################## TITULAR ##################
+
+Project Taara: así es el nuevo intento de Google de ofrecer Internet a todo el mundo
+
+################## ENTRADILLA ##################
+
+
+
+################## CONTENIDO ##################
+
+La empresa matriz de Google, Alphabet, cerró en enero su proyecto Loon cuyo propósito era ofrecer Internet a todos los lugares del planeta. Sin embargo, esto no supuso que la compañía se rindiese con su objetivo, sino que este paso a formar parte de Taara.Chile tendrá bases terrestres de Starlink: Elon Musk quiere aprovecharse del país más largo del mundoA través de Taara, Alphabet pretende llevar la banda ancha a los territorios en los que la fibra no llega, ya sea por el elevado coste de esta tecnología o por razones geográficas que impiden que esto sea efectivo.En este proyecto, los desarrolladores se centran en comunicaciones inalámbricas ópticas y sacrifican “una pequeña cantidad de fiabilidad de la señal”, con el fin de dotar a los usuarios de un Internet rápido y económico. De momento, Taara se ha probado en Brazzaville (capital de República del Congo) y Kinshasa (capital de la República Democrática del Congo), dos ciudades que se encuentran a menos de 5 kilómetros de distancia entre ellas.En estas dos localidades africanas, la instalación de fibra es cinco veces más caro que en otros lugares. Esto se debe a que, para instalarla, se deben desplegar 400 kilómetros de fibra para bordear el río Congo que separa a las ciudades.Zuckerberg quiere revivir la reputación de Facebook: así pretende llevar Internet a todos los rincones del mundoAlphabet ha tratado de brindar una conexión más asequible para los habitantes de ambos municipios colaborando con Liquid Inteligent Technologies. Ambas empresas han colocado enlaces en la red de fibra para retransmitir haces de luz por encima del río y, así, permitir que haya conectividad donde antes no era posible.El director de Ingeniería del proyecto de Alphabet, Baris Erkmen, asegura que los enlaces que instalaron proporcionaron casi 700TB de datos en 20 días con una disponibilidad del 99%. Esto equivalía, según sus palabras, “a ver un partido de la Copa Mundial de la FIFA en HD 270 000 veces”.Apúntate a nuestra newsletter y recibe en tu correo las últimas noticias sobre tecnología.
+
+################## LINK ##################
+
+https://www.20minutos.es/tecnologia/actualidad/

@@ -1,0 +1,16 @@
+
+################## TITULAR ##################
+
+IBM construye un procesador cuántico de 127 qubits, el doble de potencia que la computadora que lideraba antes el ranking
+
+################## ENTRADILLA ##################
+
+
+
+################## CONTENIDO ##################
+
+La competencia por desarrollar la computadora cuántica más potente del mundo no frena. Prueba de ello es el nuevo procesador cuántico de 127 bits cuánticos de la compañía estadounidense IBM. Su potencia es el doble que la de ‘Zuchongzhi’ que recientemente habían creado unos ingenieros de la Universidad de Ciencia y Tecnología de China y la Universidad Tsinghua de Pakín.China vuelve a superar a Google: crean una computadora cuántica capaz de resolver un cálculo complejo en poco más de una horaEl procesador de IBM ha recibido el nombre de ‘Eagle’. Zaira Nazario, responsable técnica de Teoría y Aplicaciones de Computación Cuántica de la empresa, asegura que “es un hito porque supera la barrera de los 100 qubits”.“Ha llegado ya al límite en el que no se puede simular su potencia de cálculo con procesadores clásicos”, apunta Nazario. Según IBM, el número de bits tradicionales necesarios para igualar la potencia de cálculo de su creación es de 127 qubits.Pese al claro avance en la computación cuántica que esta propuesta presenta, todavía queda mucho para conseguir que estos ordenadores cuánticos revolucionen la informática. Sin embargo, el vicepresidente de IBM y director de investigación, Darío Gil, apuesta por Eagle “es un paso importante hacia el día en el que las computadoras cuánticas puedan superar a las computadoras clásicas en niveles significativos”.El ordenador cuántico más potente de Europa está en Alemania y su procesador lo protege la misma tecnología que cuida de la Mona LisaLa marca prevé crear un nuevo procesador de 433 qubits el año que viene y otro de 1121 bits cuánticos en 2023. Sus logros y aspiraciones posicionan a IBM en la cúspide de la carrera por construir el primer ordenador cuántico comercial.Junto a IBM, también se encuentra Google y, en menor rango, Microsoft e Intel. No obstante, no solo las compañías estadounidenses están tratando de convertirse en líderes de este mercado, China llegó a invertir 10.000 millones de dólares a centros de investigación de computación cuántica entre 2017 y 2020.Apúntate a nuestra newsletter y recibe en tu correo las últimas noticias sobre tecnología.
+
+################## LINK ##################
+
+https://www.20minutos.es/tecnologia/actualidad/ibm-construye-un-procesador-cuantico-de-127-qubits-el-doble-de-potencia-que-la-computadora-que-lideraba-antes-el-ranking-4892675/

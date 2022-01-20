@@ -1,0 +1,16 @@
+
+################## TITULAR ##################
+
+WhatsApp actualiza su política de privacidad en Europa para cumplir con el Reglamento de Protección de Datos
+
+################## ENTRADILLA ##################
+
+
+
+################## CONTENIDO ##################
+
+La aplicación de mensajería WhatsApp, propiedad de Meta (la empresa anteriormente conocida como Facebook) actualizó este lunes su política de privacidad en Europa con mayor información sobre su uso de datos, aunque sin cambios en su funcionamiento, para cumplir con el Reglamento General de Protección de Datos (RGPD) comunitario, y anunció que apelará la multa que le impuso Irlanda por vulnerarlo.Los cambios anunciados por WhatsApp se producen a raíz de la multa de 225 millones de euros a la plataforma por parte de la Comisión de Protección de Datos (DPC) de Irlanda -país en el que tiene su sede europea- por no cumplir las exigencias de transparencia establecidas por el RGPD.Este organismo, como anunció en septiembre, consideraba que la empresa no había sido transparente a la hora de informar sobre cómo los datos de los usuarios de WhatsApp se compartían entre empresas de su matriz, Meta."Estamos en desacuerdo con la decisión de la DPC y vamos a apelar en los tribunales de la Unión Europea e Irlanda", afirmó en declaraciones a Europa Press el responsable de Comunicación de WhatsApp en Europa, Oriente Medio y África (EMEA), Josh Breckman."Creemos que ya proporcionamos la información requerida a todos nuestros usuarios", comunicó un portavoz de la compañía, al tiempo que recordó que todos los chats siguen utilizando la encriptación de extremo a extremo, con la que el contenido solo es accesible al emisor y el receptor.Información adicionalPara ajustarse al RGPD, WhatsApp ha decidido desde este lunes comenzar a mostrar información adicional a los usuarios sobre cómo utiliza los datos, cómo se recopilan, por qué se almacenan, bajo qué circunstancias se pueden eliminar y qué servicios proporcionan terceros.La compañía también informará a los usuarios europeos sobre cómo se comparten los datos entre diferentes países y cómo se protegen, así como la base legal que utiliza la compañía para el procesamiento de los datos de los usuarios."No hay cambios en la forma en que se lleva a cabo el procesamiento de datos de los usuarios", quiso destacar Breckman, a pesar de la actualización de las políticas.Además de las políticas de la web de WhatsApp, la aplicación también mostrará un mensaje pequeño y descartable en la lista de chats de los usuarios para comunicarles los cambios. Los usuarios no tendrán que volver a aceptar estas políticas ni llevar a cabo acciones adicionales.
+
+################## LINK ##################
+
+https://www.20minutos.es/tecnologia/actualidad/whatsapp-actualiza-su-politica-de-privacidad-en-europa-para-cumplir-con-el-reglamento-de-proteccion-de-datos-4899361/

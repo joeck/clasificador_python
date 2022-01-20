@@ -1,0 +1,16 @@
+
+################## TITULAR ##################
+
+Anuncian 11 nuevas funciones de WhatsApp: transcripción de audios, negocios cercanos y opciones de privacidad
+
+################## ENTRADILLA ##################
+
+Según WABetaInfo, el blog de información sobre las actualizaciones de WhatsApp, la empresa incorporaría nuevas herramientas destinadas a mejorar su servicio y a competir con aplicaciones similares, como Telegram.
+
+################## CONTENIDO ##################
+
+WhatsApp próximamente tendrá once nuevas herramientas vinculadas con la privacidad del usuario, la creación de comunidades, usos en nuevos dispositivos y la posibilidad de reaccionar a un mensaje concreto, de manera similar a las publicaciones de Facebook. A continuación, todas las novedades:Transcripción de audiosLa nueva herramienta permitirá obtener la transcripción de una nota de voz. Por el momento, las pruebas se realizaron en dispositivos iOS.ComunidadesSon una nueva forma de juntar grupos de WhatsApp por temas específicos; cada comunidad puede estar compuesta de distintos grupos.Modo multidispositivoSe podrá usar la aplicación en dos dispositivos móviles al mismo tiempo; el segundo celular funciona como un dispositivo emparejado.Uso en tabletsLa nueva actualización implicaría la posibilidad de utilizar WhatsApp en tablets con iOS y Android. Asimismo, gracias al nuevo modo multidispositivo, se podrá chatear sin estar conectado a una red de Wifi en el celular.TemasEsta herramienta permitirá cambiar la interfaz de la app y el color. Según WABetaInfo, también se podrá personalizar los botones y el texto. Negocios CercanosWhatsApp incorporará un directorio de empresas cercanas, filtradas por categorías, que usan WhatsApp Business; cualquier usuario podrá iniciar un chat con un negocio. Esta opción ya fue testeada en Brasil y se espera que llegue a todo el mundo. Copias de seguridadHabrá nuevas opciones para configurar las copias de seguridad en dispositivos Android; el usuario podrá determinar si incluir fotos, audios, videos, documentos u otros archivos, con la posibilidad de ver el espacio que ocupa cada uno. Por otro lado, se rumorea que el almacenamiento gratuito de la app podría llegar a su fin.PrivacidadSerá posible ocultar la foto de perfil, la hora de la última conexión e información personal a contactos específicos, a través de la opción "Mis contactos excepto&hellip;". Esta herramienta ya se probó en la versión Beta de la app.Reacciones a mensajesSe habilitará la opción de reaccionar con emojis a un mensaje específico, al igual que en Facebook Messenger e Instagram.Borrar mensajes sin límite de tiempoActualmente, se pueden borrar los mensajes antes de que pasen los 68 minutos desde el momento de envío. Según WABetaInfo, la app podría eliminar ese límite de tiempo.Transferir chats entre Android y iPhoneEsta opción ya está disponible para algunos modelos de smartphones, como los nuevos celulares plegables de Samsung y aquellos que tienen Google Pixel 6. Se anunció que será posible transferir los chats de iPhone a cualquier dispositivo móvil con Android 12. Por el momento, no está disponible la función inversa.MGF
+
+################## LINK ##################
+
+https://www.eldiarioar.com/conexiones/anuncian-11-nuevas-funciones-whatsapp-transcripcion-audios-negocios-cercanos-opciones-privacidad_1_8492090.html

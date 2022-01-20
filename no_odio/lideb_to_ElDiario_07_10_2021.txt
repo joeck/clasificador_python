@@ -1,0 +1,16 @@
+
+################## TITULAR ##################
+
+“LIDeB tools”, un herramienta para poner en común conocimiento científico y descubrir nuevos fármacos
+
+################## ENTRADILLA ##################
+
+La Universidad Nacional de La Plata creó una serie de aplicaciones que permite acceder al conocimiento científico desarrollado por la institución de manera gratuita, online y en todo el mundo.
+
+################## CONTENIDO ##################
+
+El Laboratorio de Investigación y Desarrollo de Bioactivos (LIDeB), perteneciente a la Universidad Nacional de la Plata, desarrolló tres aplicaciones web que permiten que científicos de todo el mundo puedan acceder a las investigaciones realizadas por ese departamento y aportar su información. Lo denominaron "LIDeB Tools".El objetivo es promover el intercambio entre científicos y aportar al descubrimiento de nuevos fármacos para el tratamiento de la epilepsia y de enfermedades infecciosas. Esto se debe a que desde LIDeB se especializan en el diseño de fármacos asistido por computadora y sus líneas de investigación principales son los nuevos fármacos contra la epilepsia y la enfermedad de Chagas.Las tres aplicaciones son Heatmaps Similarity, iRAPCA y LUDe, y tienen distintas funcionalidades. La primera es una herramienta de análisis visual que permite observar si un conjunto de moléculas exhibe o no diversidad química. La segunda es para realizar muestreos representativos de pequeñas moléculas. La última sirve para validar y comparar modelos computacionales utilizados en la búsqueda de nuevos fármacos.Así, con estos primeros tres desarrollos apuestan a generar conocimiento científico de manera comunitaria y con la tecnología como eje. Desde el proyecto, además, adelantaron que antes de fin de año agregarán otras tres nuevas aplicaciones.El director del LIDeB, el Doctor Alan Talevi, señaló: "Nuestro objetivo es que toda la comunidad científica puede beneficiarse de estas herramientas y utilizarlas como punto de partida para introducir mejoras y desarrollar otras aplicaciones. Se trata de una filosofía muy distinta a la del software comercial al que se accede únicamente tras pagar una licencia, y que no se puede modificar y re-utilizar sin infringir derechos de autor".
+
+################## LINK ##################
+
+https://www.eldiarioar.com/conexiones/lideb-tools-herramienta-poner-comun-conocimiento-cientifico-descubrir-nuevos-farmacos_1_8374900.html

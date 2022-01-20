@@ -1,0 +1,16 @@
+
+################## TITULAR ##################
+
+Satélites espaciales detectan vertederos a las afueras de Madrid como el principal foco de emisión de metano de Europa
+
+################## ENTRADILLA ##################
+
+
+
+################## CONTENIDO ##################
+
+La Agencia Espacial Europea (ESA) ha informado de que unos satélites de alta resolución habían hallado “cantidades sustanciales de metano que se escapan de los vertederos adyacentes cerca del centro de Madrid”. Más concretamente, los vertederos eran dos y se encuentran a 18 kilómetros del centro de la capital y a unos seis kilómetros de distancia entre ellos.Los sopladores de hojas son los dispositivos que más contaminanPara llegar a estos datos, los investigadores del Instituto Holandés de Investigación Espacial y de GHGSat analizaron la información recogida por Tropomi, de la misión Sentinel-5P de Copernicus, y las imágenes comerciales de alta resolución de GHGSat.Los científicos descubrieron que los dos vertederos madrileños emitieron en total 8800 kilogramos de metano por hora entre el 20 de agosto y el 13 de octubre de 2021. Según la ESA, esta cifra es la más alta hasta ahora observada en Europa por GHGSat.De hecho, las imágenes recogidas por satélite enseñaron como una nube de gas de efecto invernadero se dirigía hacia las casas cercanas a dichos vertederos. Aunque se desconoce de momento la causa de las emisiones, los datos recogieron que la fuente de metano más grande que se liberó fue de un ritmo cercano a los 5000 kg/h.Sobre esto, la ESA recalca que “la Directiva sobre vertederos de 1999 exige que los operadores de vertederos de la UE capturen el gas creado por la descomposición de material orgánico y lo utilicen para generar energía o lo quemen mediante quema”. GHGSat estima que convertir el metano en energía podría abastecer a aproximadamente 350000 familias.Hay que tener en cuenta que los estudios actuales culpan al metano de una cuarta parte del calentamiento global y sugieren que este es un gas de efecto invernadero alrededor de 85 veces más potente que el CO2 durante 20 años. Con respecto a las emisiones de gases de efecto invernadero, los políticos europeos se comprometieron a reducirlos un 55% con vistas al 2030.Descubren un método de extraer metales valiosos de la basura electrónicaLa Estrategia de Metano de la Unión Europea (octubre de 2020), comprobó que el 26% de las emisiones de este gas se originaban en los desechos. Esto implicaba que los vertederos representarían en 2025 entre el 8% y el 10% de emisiones de gases de efecto invernadero en el mundo.“Medir las emisiones de manera constante es un desafío para los operadores y las autoridades de los vertederos”, asegura la ESA. Por ese motivo, GHGSat y SRON analizan juntos los datos de Topomi y los satélites de alta resolución para encontrar estos gases dañinos para la Tierra.Apúntate a nuestra newsletter y recibe en tu correo las últimas noticias sobre tecnología.
+
+################## LINK ##################
+
+https://www.20minutos.es/tecnologia/actualidad/

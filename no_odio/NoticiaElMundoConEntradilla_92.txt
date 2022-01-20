@@ -1,0 +1,17 @@
+
+################## TITULAR ##################
+
+Coronavirus hoy, últimas noticias | Médicos holandeses: "Nos dirigimos directamente a una catástrofe sanitaria"
+
+################## ENTRADILLA ##################
+
+Las infecciones por coronavirus en los Países Bajos, al igual que en otros países europeos, se están acercando a máximos históricos a pesar de que los adultos vacunados rondan el 85%
+
+################## CONTENIDO ##################
+
+"Mueren nueve personas más en Venezuela a causa de la covid-19 En las últimas 24 horas fallecieron nueve personas en Venezuela a causa de la covid-19,","articleSection":"salud","datePublished":"2021-11-09T06:26:55Z","dateModified":"2021-11-10T04:16:40Z","publisher":{"@type":"NewsMediaOrganization","name":"El Mundo","logo":{"@type":"ImageObject","url":"https://e00-elmundo.uecdn.es/assets/desktop/master/img/iconos/elmundo.png","width":"204","height":"27","sameAs":["https://twitter.com/elmundoes","https://www.facebook.com/elmundo"]}},"author":[{"@type":"Person","name":"ISABEL VELLOSO"},{"@type":"Person","name":"MIGUEL TEJERINA"}],"image":{"@type":"ImageObject","url":"https://phantom-elmundo.unidadeditorial.es/0b24e7e44ad0027e20b51e972e656754/f/jpg/assets/multimedia/imagenes/2021/11/09/16364386698048.jpg","height":"341","width":"600"},"coverageStartTime":"2021-11-09T06:26:55Z","coverageEndTime":"2021-11-09T23:59:59Z","headline":"Coronavirus hoy, últimas noticias |  Médicos holandeses: Nos dirigimos directamente a una catástrofe sanitaria","description":"Mueren nueve personas más en Venezuela a causa de la covid-19 En las últimas 24 horas fallecieron nueve personas en Venezuela a causa de la covid-19,","about":{"@type":"Event","name":"Coronavirus hoy, últimas noticias |  Médicos holandeses: Nos dirigimos directamente a una catástrofe sanitaria","description":"Mueren nueve personas más en Venezuela a causa de la covid-19 En las últimas 24 horas fallecieron nueve personas en Venezuela a causa de la covid-19,","eventAttendanceMode":"OnlineEventAttendanceMode","startDate":"2021-11-09T06:26:55Z","endDate":"2021-11-09T23:59:59Z","image":[{"@type":"ImageObject","url":"https://phantom-elmundo.unidadeditorial.es/0b24e7e44ad0027e20b51e972e656754/f/jpg/assets/multimedia/imagenes/2021/11/09/16364386698048.jpg","width":"600","height":"341"}],"location":{"@type":"Place","name":"EL MUNDO","address":{"@type":"PostalAddress","addressCountry":"ES"}}},"liveBlogUpdate":[{"@type":"BlogPosting","headline":"Mueren nueve personas más en Venezuela a causa de la covid-19","mainEntityOfPage":"https://www.elmundo.es/ciencia-y-salud/salud/2021/11/09/618a0fe0c5e20e001ea49174-directo.html#link-6558","url":"https://www.elmundo.es/ciencia-y-salud/salud/2021/11/09/618a0fe0c5e20e001ea49174-directo.html#link-6558","datePublished":"2021-11-10T04:16:40Z","dateModified":"2021-11-10T04:16:40Z","author":{"@type":"Person","name":"Ana Carrasco"},"articleBody":"En las últimas 24 horas fallecieron nueve personas en Venezuela a causa de la covid-19, con lo que la cifra total de fallecidos por la pandemia se elevó a 4.985, informó este martes la vicepresidenta ejecutiva, Delcy Rodríguez.  &amp;amp;quot;Lamentablemente, hoy tenemos 9 venezolanos fallecidos por el Coronavirus&amp;amp;quot;, informó Rodríguez en su cuenta en Twitter, donde detalló que seis de las muertes ocurrieron en el estado Zulia, dos en Mérida y uno en Caracas
+
+################## LINK ##################
+
+https://www.elmundo.es/ciencia-y-salud/salud/2021/11/09/618a0fe0c5e20e001ea49174-directo.html
+

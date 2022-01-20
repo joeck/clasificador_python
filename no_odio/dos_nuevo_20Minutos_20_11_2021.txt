@@ -1,0 +1,16 @@
+
+################## TITULAR ##################
+
+Dos nuevos superordenadores vigilarán el clima de cerca para pronosticar mejor posibles desastres metereológicos
+
+################## ENTRADILLA ##################
+
+
+
+################## CONTENIDO ##################
+
+Estados Unidos quiere convertirse en líder en computación de alto rendimiento para los pronósticos meteorológicos y climáticos. Prueba de ello es la actualización que la Oficina Nacional de Administración Oceánica y Atmosférica (NOAA son sus siglas en inglés) realizó hace más de un año sobre su almacenamiento y la velocidad de interconexión de su sistema de computación operacional meteorológica y climática.El verdadero significado del porcentaje de lluvia que aparece en las apps del TiempoLa NOAA explicó que sus dos nuevas computadoras Cray, una primaria operativa y una de respaldo, se instalarían en Manassas, Virginia y Phoenix. Según la oficina, estas máquinas de 12 petaflops de capacidad estarán operativas a principios de 2022.Estos sistemas sustituirán a los actuales y se pasará de una capacidad combinada de 16 petaflops a una capacidad estimada de 40 petaflops. De este modo, la computación de alto rendimiento de NOAA casi triplicará la capacidad y duplicará la velocidad de almacenamiento e interconexión.Para avanzar en la investigación y en el desarrollo de estas supercomputadoras, la NOAA ha trabajado a través de su Centro de Innovación en Predicción de la Tierra (EPIC).A través de esta tecnología, Estados Unidos quiere acertar con sus previsiones meteorológicas para evitar sucesos como el del huracán Michael en 2018. Este fenómeno llegó hasta la costa del Golfo de Florida y alcanzó vientos de más de 150 millas por hora, con una tormenta de categoría 5.Antes de que el huracán tocase tierra en Florida, el Centro Nacional de Huracanes de los EE UU había pronosticado la mitad del temporal que ocasionó. Lo que ocurrió fue que el huracán Michael pasó por un proceso que hizo que las velocidades del viento se intensificarán considerablemente en poco tiempo.DeepMind desarrolla una Inteligencia Artificial capaz de predecir casi exactamente cuándo y dónde va a lloverEste problema demostró que los sistemas de pronósticos meteorológicos y climáticos debían mejorarse. De este modo, la tecnología en la que está trabajando NOAA pretende evitar catástrofes por no vaticinar posibles incrementos de la velocidad de los vientos.Las nuevas supercomputadoras serán un antes y un después en la precisión de los pronósticos. Esta tecnología es cada vez más importante a causa de la evolución a peor del cambio climático, que alimenta tormentas más preocupantes.Apúntate a nuestra newsletter y recibe en tu correo las últimas noticias sobre tecnología.
+
+################## LINK ##################
+
+https://www.20minutos.es/tecnologia/actualidad/dos-nuevos-superordenadores-vigilaran-el-clima-de-cerca-para-pronosticar-mejor-posibles-desastres-metereologicos-4895816/

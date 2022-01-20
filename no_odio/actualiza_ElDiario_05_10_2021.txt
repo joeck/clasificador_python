@@ -1,0 +1,16 @@
+
+################## TITULAR ##################
+
+Actualización Windows 11Se lanza Windows 11: ¿cuáles son las novedades?
+
+################## ENTRADILLA ##################
+
+A partir de hoy, martes 5 de octubre, estará disponible el nuevo sistema operativo de Microsoft. Las nuevas herramientas permiten realizar multitareas, hay nuevas opciones de personalización, integración con Android y más.
+
+################## CONTENIDO ##################
+
+Los usuarios de Windows 10 pueden descargar la actualización de manera gratuita; estará disponible para todas las computadoras con Microsoft compradas a partir del 2016. Los requisitos mínimos para instalar Windows 11 son: poseer un chip de 64 bits, de al menos 1 GHz con dos o más núcleos, 4 GB de RAM y 64 GB o más de capacidad de almacenamiento. A continuación las novedades del sistema operativo:InterfazWindows 11 implementa un diseño más moderno, con formas redondeadas, nuevos menús, carpetas y alertas de sonido rediseñadas. Asimismo, hay una nueva barra de tareas para acceder de forma directa a las aplicaciones, a la que está integrada Microsoft Teams.Por otro lado, se introdujo un sistema operativo más veloz a la hora de arrastrar ventanas y, así, facilitar la transición entre tareas.WidgetsSon pequeñas interfaces visuales que resumen información (el tiempo, calendario, mails no leídos y otras funciones). Windows 11 tiene un set de widgets en un panel que funciona como una barra de búsqueda de intereses del usuario.Integración con aplicaciones AndroidAhora se podrán descargar las apps que se utilizan en dispositivos móviles desde  Microsoft Store —gracias a una integración con Amazon Appstore—. Las notificaciones de las aplicaciones aparecerán directamente en la pantalla.Monitores externosAhora es más fácil conectar y desconectar monitores externos, sin perder la ubicación y la organización de las ventanas abiertas. TrackpadSe implementó un mejor reconocimiento de gestos; es posible cambiar de aplicación deslizando tres dedos, o cambiar de escritorio deslizando cuatro. Además, se incluye un soporte para transcripción de habla en tiempo real.VideojuegosSe incorporan nuevas funciones que mejoran el rendimiento de los videojuegos: Auto HDR —para una mayor calidad gráfica—, DirectStorage, una opción de almacenamiento que ayuda a la carga rápida de los juegos, y una nueva aplicación de Xbox, con xCloud incluido. También se puede acceder al servicio de suscripción de Xbox, Game Pass, y a la tienda de juegos de Xbox.Lápiz digitalWindows 11 es compatible con el lápiz digital háptico; ahora el usuario podrá sentir y escuchar las vibraciones cuando escribe o dibuja.Soporte de escritorio virtualEl nuevo sistema operativo permite configurar los escritorios virtuales de manera más dinámica, agilizando la alternancia entre los distintos escritorios: personal, laboral, escolar o de juegos.MGF
+
+################## LINK ##################
+
+https://www.eldiarioar.com/conexiones/lanza-windows-11-son-novedades_1_8369069.html

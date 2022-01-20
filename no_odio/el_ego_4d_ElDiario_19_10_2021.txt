@@ -1,0 +1,16 @@
+
+################## TITULAR ##################
+
+El Ego 4D, el proyecto de inteligencia artificial de Facebook,: ¿busca reemplazar la memoria a corto plazo?
+
+################## ENTRADILLA ##################
+
+La empresa está desarrollando un sistema de realidad aumentada que se usará para ayudar a las personas en sus vidas cotidianas.
+
+################## CONTENIDO ##################
+
+Facebook está llevando a cabo un proyecto de Inteligencia Artificial, a través de Ego4D. Frente al auge de los dispositivos de realidad virtual, como el Oculus, la empresa busca crear un sistema de realidad aumentada que tiene como objetivo ayudar a las personas en su vida diaria, identificar dónde están los objetos de la casa, recibir instrucciones para seguir una receta o tocar un instrumento, saber quién dijo algo en un determinado momento y más.Ego 4D es un sistema de realidad aumentada que permitiría facilitar la interacción de las personas con su entorno, recordar movimientos y procesos cotidianos.Los dispositivos (como celulares, cámaras y robots domésticos) que lo utilicen tendrán funciones relacionadas con la memoria episódica (recordar dónde están guardados los objetos), ayudar a seguir instrucciones (por ejemplo, para elaborar una receta), facilitar la manipulación de objetos y realizar transcripciones audiovisuales de conversaciones.Actualmente, Facebook está realizando un ensayo con 13 universidades y laboratorios de nueve países que involucra la recopilación de datos de más de 700 participantes. Son 2200 horas de video en primera persona de las vidas diarias de los participantes, grabadas usando anteojos de realidad aumentada y cámaras GoPro. Si bien todas las imágenes los rostros de los participantes fueron difuminados y se eliminó cualquier tipo de identificación personal, este proyecto suscitó una polémica en relación a la privacidad de la información de los usuarios. MGF
+
+################## LINK ##################
+
+https://www.eldiarioar.com/conexiones/ego-4d-proyecto-inteligencia-artificial-facebook-busca-reemplazar-memoria-corto-plazo_1_8411299.html
