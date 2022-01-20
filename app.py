@@ -35,6 +35,7 @@ class Articulo:
 
 root = Tk()
 
+_encoding="ISO-8859-1"
 tabs = ttk.Notebook(root)
 tabs.pack(fill=BOTH, expand=TRUE)
 trainFrame = ttk.Frame(tabs)
@@ -76,45 +77,44 @@ def generateDF(path, label):
     for file in files:
         file_path = os.path.join(path, file)
         if os.path.isfile(file_path):
-            with open(file_path, 'r', encoding="ISO-8859-1") as f:
+            with open(file_path, 'r', encoding=_encoding) as f:
                 df = df.append({"name": file, "odio": label, "content": f.read()}, ignore_index=True)
     return df
 
+def showPerformance(report, matrix):
+    performanceText.insert("1.0", report)
+    tp_label["text"] = "TP: " + str(matrix[0][0])
+    fp_label["text"] = "FP: " + str(matrix[0][1])
+    fn_label["text"] = "FN: " + str(matrix[1][0])
+    tn_label["text"] = "TN: " + str(matrix[1][1])
+
 def decisionTree(X_train_vector, X_test_vector,y_train, y_test):
-    # print("############ decisionTree ############")
     global clf
     clf = DecisionTreeClassifier()
     clf.fit(X_train_vector,y_train)
     y_pred = clf.predict(X_test_vector)
-    # print(confusion_matrix(y_test, y_pred))
-    performanceText.insert("1.0", classification_report(y_test, y_pred))
+    showPerformance(classification_report(y_test, y_pred), confusion_matrix(y_test, y_pred))
 
 def logisticRegression(X_train_vector, X_test_vector,y_train, y_test):
-    # print("############ logisticRegression ############")
     global clf
     clf=LogisticRegression(solver = 'liblinear', C=10, penalty = 'l2')
     clf.fit(X_train_vector, y_train)
     y_pred = clf.predict(X_test_vector)
-    # print(confusion_matrix(y_test, y_pred))
-    performanceText.insert("1.0", classification_report(y_test, y_pred))
+    showPerformance(classification_report(y_test, y_pred), confusion_matrix(y_test, y_pred))
 
 def naiveBayes(X_train_vector, X_test_vector,y_train, y_test):
-    # print("############ naiveBayes ############")
     global clf
     clf = MultinomialNB()
     clf.fit(X_train_vector.toarray(), y_train)
     y_pred = clf.predict(X_test_vector)
-    # print(confusion_matrix(y_test, y_pred))
-    performanceText.insert("1.0", classification_report(y_test, y_pred))
+    showPerformance(classification_report(y_test, y_pred), confusion_matrix(y_test, y_pred))
 
 def gradientBoostedTree(X_train_vector, X_test_vector,y_train, y_test):
-    # print("############ gradientBoostedTree ############")
     global clf
     clf = GradientBoostingClassifier()
     clf.fit(X_train_vector, y_train)
     y_pred = clf.predict(X_test_vector)
-    # print(confusion_matrix(y_test, y_pred))
-    performanceText.insert("1.0", classification_report(y_test, y_pred))
+    showPerformance(classification_report(y_test, y_pred), confusion_matrix(y_test, y_pred))
 
 def split_transform(x, y):
     global tfidf_vectorizer
@@ -126,17 +126,15 @@ def split_transform(x, y):
 
 def train():
     try:
+        begin = time.time()
+        train_btn["text"] = "Calculando..."
+        trainFrame.update()
         df = pd.DataFrame({"name": [], "odio": [], "content":[]})
         df = df.append(generateDF(odio_input.get(), 1))
         df = df.append(generateDF(no_odio_input.get(), 0))
-        # print(df.head())
         df['tokens'] = df['content'].map(tokenize)
-        # print(df.head())
         df['tokens'] = df['tokens'].map(removeStopwords)
-        # print(df.head())
         df['lemma'] = df['tokens'].map(stemming)
-        # print(df.head())
-        # print(df['lemma'])
 
         X_train_vectors_tfidf, X_test_vectors_tfidf, y_train, y_test = split_transform(df['lemma'],df['odio'])
 
@@ -152,10 +150,13 @@ def train():
             messagebox.showinfo("No algorithm", "Please select an algorithm")
 
     except FileNotFoundError:
-        messagebox.showwarning("At least one of the paths you provided isn't valid")
-    # except:
-    #     print("Error occured")
-    #     messagebox.showerror("Something went wrong")
+        messagebox.showwarning("Can't resolve path", "At least one of the paths you provided isn't valid")
+    except Exception as e:
+        messagebox.showerror("Unexpected error", str(e))
+
+    train_btn["text"] = "Entrenar"
+    end = time.time()
+    train_time["text"] = f"tiempo: {end - begin: .2f}s"
 
 odio_files = []
 no_odio_files = []
@@ -220,7 +221,19 @@ algo_choice = ["Logistic Regression", "Decision Tree", "Naive Bayes", "Gradient 
 algo_select = ttk.Combobox(trainFrame, textvariable=algorithm, state="readonly", values=algo_choice)
 algo_select.grid(column=1, row=2, sticky=(E,W))
 # Execute button
-ttk.Button(trainFrame, text="Execute", default="active", command=train).grid(column=2, columnspan=2, row=2, sticky=(E,W))
+train_btn = ttk.Button(trainFrame, text="Entrenar", default="active", command=train)
+train_btn.grid(column=2, columnspan=2, row=2, sticky=(E,W))
+
+tp_label = Label(trainFrame, text="TP", bg="green")
+tp_label.grid(column=2, row=9, sticky=N)
+fp_label = Label(trainFrame, text="FP", bg="red")
+fp_label.grid(column=3, row=9, sticky=N)
+fn_label = Label(trainFrame, text="FN", bg="red")
+fn_label.grid(column=2, row=9)
+tn_label = Label(trainFrame, text="TN", bg="green")
+tn_label.grid(column=3, row=9)
+train_time = Label(trainFrame, text="")
+train_time.grid(column=2, columnspan=2, row=7, sticky=W)
 
 # padding
 for child in trainFrame.winfo_children(): 
@@ -252,6 +265,7 @@ ttk.Label(trainFrame, text="Guardar modelo:").grid(column=0, row=10, sticky=W)
 model_path = StringVar()
 model_path_input = ttk.Entry(trainFrame, textvariable=model_path)
 model_path_input.grid(column=1, row=10, columnspan=2, sticky=(W, E))
+model_path_input.insert(0, "/path/to/model.file")
 # Odio Button
 ttk.Button(trainFrame, text="Guardar", command=saveModel).grid(column=3, row=10, sticky=E)
 
@@ -280,43 +294,46 @@ def handleTableClick(e):
     noticia = "no podia encontrar la noticia"
     path = os.path.join(noticias_input.get(), filename)
     if os.path.isfile(path):
-        with open(path, 'r') as f:
+        with open(path, 'r', encoding=_encoding) as f:
             noticia = f.read()
     openNewWindow(filename + pred_text, noticia)
     
 def clasify():
-    global result
-    clas_btn["text"] = "Calculando..."
-    root.update()
-    begin = time.time()
-    df = pd.DataFrame({"name": [], "odio": [], "content":[]})
-    df = df.append(generateDF(noticias_input.get(), 1))
+    try:
+        global result
+        clas_btn["text"] = "Calculando..."
+        clasiFrame.update()
+        begin = time.time()
+        df = pd.DataFrame({"name": [], "odio": [], "content":[]})
+        df = df.append(generateDF(noticias_input.get(), 1))
 
-    df['tokens'] = df['content'].map(tokenize)
-    df['tokens'] = df['tokens'].map(removeStopwords)
-    df['lemma'] = df['tokens'].map(stemming)
-    result = DataFrame()
-    result["name"] = df["name"].copy()
+        df['tokens'] = df['content'].map(tokenize)
+        df['tokens'] = df['tokens'].map(removeStopwords)
+        df['lemma'] = df['tokens'].map(stemming)
+        result = DataFrame()
+        result["name"] = df["name"].copy()
 
-    if(os.path.isfile(model_input.get())):
-        model = pickle.load(open(model_input.get(), 'rb'))
-        tfidf = pickle.load(open(model_input.get() + "_vector", 'rb'))
-        y_pred = model.predict(tfidf.transform(df["lemma"]))
-        result["prediction"] = y_pred
-        print(result)
+        if(os.path.isfile(model_input.get())):
+            model = pickle.load(open(model_input.get(), 'rb'))
+            tfidf = pickle.load(open(model_input.get() + "_vector", 'rb'))
+            y_pred = model.predict(tfidf.transform(df["lemma"]))
+            result["prediction"] = y_pred
 
-        tree.delete(*tree.get_children())
-        #add data 
-        for index, row in result.iterrows():
-            tree.insert(parent='',index='end',iid=index,text='',values=(row["name"],row["prediction"]))
-    else:
-        messagebox.showwarning("Modelo no encontrado","No podia cargar el modelo, checka la ruta")
-    end = time.time()
-    time_label["text"] = f"tiempo: {end - begin: .2f}s"
+            tree.delete(*tree.get_children())
+            #add data 
+            for index, row in result.iterrows():
+                tree.insert(parent='',index='end',iid=index,text='',values=(row["name"],row["prediction"]))
+        else:
+            messagebox.showwarning("Modelo no encontrado","No podia cargar el modelo, checka la ruta")
+        end = time.time()
+        time_label["text"] = f"tiempo: {end - begin: .2f}s"
+    except FileNotFoundError:
+        messagebox.showwarning("Can't resolve path", "At least one of the paths you provided isn't valid")
+    except Exception as e:
+        messagebox.showerror("Unexpected error", str(e))
     clas_btn["text"] = "Clasificar"
-    root.update_idletasks()
 
-def openNewWindow(title, content):
+def openNewWindow(title="Titulo", content="Texto"):
     newWindow = Toplevel(root)
     newWindow.title(title)
     newWindow.geometry("400x400")
@@ -325,16 +342,18 @@ def openNewWindow(title, content):
     text.insert("1.0", content)
 
 def saveResults():
-    result.to_csv(results_input.get(), index=FALSE)
-    messagebox.showinfo("Resultos Guardados", "Resultos guardados en " + results_input.get())
+    try:
+        result.to_csv(results_input.get(), index=FALSE)
+        messagebox.showinfo("Resultos Guardados", "Resultos guardados!")
+    except:
+        messagebox.showwarning("Ruta incorecto","No se puede guardar el modelo en esta ruta: " + results_input.get())
 
 # noticias Label
-ttk.Label(clasiFrame, text="Noticias para clasificar").grid(column=0, row=0, sticky=W)
+ttk.Label(clasiFrame, text="Noticias para clasificar:").grid(column=0, row=0, sticky=W)
 # Odio path input
 noticias_path = StringVar()
 noticias_input = ttk.Entry(clasiFrame, textvariable=noticias_path)
-# noticias_input.insert(0, "/path/to/directory/")
-# noticias_input.bind("<FocusIn>", lambda args: noticias_input.delete('0', 'end'))
+noticias_input.insert(0, "/path/to/directory/")
 noticias_input.grid(column=1, row=0, columnspan=2, sticky=(W, E))
 # noticias Button
 ttk.Button(clasiFrame, text="Abrir", command=getUnlabeledDirectory).grid(column=3, row=0, sticky=E)
@@ -344,8 +363,7 @@ ttk.Label(clasiFrame, text="Model clasificador:").grid(column=0, row=1, sticky=W
 # Model input
 model_path = StringVar()
 model_input = ttk.Entry(clasiFrame, textvariable=model_path)
-# model_input.insert(0, "/path/to/model.file")
-# model_input.bind("<FocusIn>", lambda args: model_input.delete('0', 'end'))
+model_input.insert(0, "/path/to/model.file")
 model_input.grid(column=1, row=1, columnspan=2, sticky=(W, E))
 # model Button
 ttk.Button(clasiFrame, text="Abrir", command=getModel).grid(column=3, row=1, sticky=E)
@@ -380,7 +398,6 @@ ttk.Label(clasiFrame, text="Guardar Resultados").grid(column=0, row=3, sticky=W)
 results_var = StringVar()
 results_input = ttk.Entry(clasiFrame, textvariable=results_var)
 results_input.insert(0, "/my/project/results.csv")
-results_input.bind("<FocusIn>", lambda args: results_input.delete('0', 'end'))
 results_input.grid(column=1, row=3, columnspan=2, sticky=(W, E))
 # noticias Button
 ttk.Button(clasiFrame, text="Guardar", command=saveResults).grid(column=3, row=3, sticky=E)
@@ -395,13 +412,13 @@ clasiFrame.columnconfigure(3, weight=1, minsize=100)
 for child in clasiFrame.winfo_children(): 
     child.grid_configure(padx=5, pady=5)
 
-root.geometry("800x400")
+root.geometry("800x450")
 root.title("Python classificador")
 root.columnconfigure(0, weight=1)
 root.rowconfigure(0, weight=1)
-no_odio_input.insert(0, "/Users/joelplambeck/Documents/ZHAW/5_Semester/Proyecto Computacion/Plambeck_Joel.PC1.A3/RapidMiner/No odio")
-odio_input.insert(0, "/Users/joelplambeck/Documents/ZHAW/5_Semester/Proyecto Computacion/Plambeck_Joel.PC1.A3/RapidMiner/Odio")
-model_path_input.insert(0, "/Users/joelplambeck/Documents/clasificador_python/model.clf")
-noticias_input.insert(0, "/Users/joelplambeck/Documents/ZHAW/5_Semester/Proyecto Computacion/Plambeck_Joel.PC1.A3/RapidMiner/unlabeled")
-model_input.insert(0, "/Users/joelplambeck/Documents/clasificador_python/model.clf")
+# no_odio_input.insert(0, "/Users/joelplambeck/Documents/ZHAW/5_Semester/Proyecto Computacion/Plambeck_Joel.PC1.A3/RapidMiner/No odio")
+# odio_input.insert(0, "/Users/joelplambeck/Documents/ZHAW/5_Semester/Proyecto Computacion/Plambeck_Joel.PC1.A3/RapidMiner/Odio")
+# model_path_input.insert(0, "/Users/joelplambeck/Documents/clasificador_python/model.clf")
+# noticias_input.insert(0, "/Users/joelplambeck/Documents/ZHAW/5_Semester/Proyecto Computacion/Plambeck_Joel.PC1.A3/RapidMiner/unlabeled")
+# model_input.insert(0, "/Users/joelplambeck/Documents/clasificador_python/model.clf")
 root.mainloop()
