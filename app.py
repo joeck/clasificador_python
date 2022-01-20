@@ -1,3 +1,4 @@
+from textwrap import fill
 from tkinter import *
 from tkinter import ttk
 from tkinter import Text
@@ -270,6 +271,17 @@ def getUnlabeledDirectory():
 def getModel():
     model_input.delete(0, 'end')
     model_input.insert(0, filedialog.askopenfilename(title="Elige modelo del clasificador"))
+
+def handleTableClick(e):
+    filename, odio_pred = my_game.item(my_game.focus())["values"]
+    pred_text = " (no odio)"
+    if odio_pred == "1.0": pred_text = " (odio)"
+    noticia = "no podia encontrar la noticia"
+    path = os.path.join(noticias_input.get(), filename)
+    if os.path.isfile(path):
+        with open(path, 'r') as f:
+            noticia = f.read()
+    openNewWindow(filename + pred_text, noticia)
     
 def clasify():
     df = pd.DataFrame({"name": [], "odio": [], "content":[]})
@@ -288,8 +300,22 @@ def clasify():
         y_pred = model.predict(tfidf.transform(df["lemma"]))
         result["prediction"] = y_pred
         print(result)
+
+        #add data 
+        for index, row in result.iterrows():
+            my_game.insert(parent='',index='end',iid=index,text='',values=(row["name"],row["prediction"]))
     else:
         messagebox.showwarning("Modelo no encontrado","No podia cargar el modelo, checka la ruta")
+
+def openNewWindow(title, content):
+    newWindow = Toplevel(root)
+    newWindow.title(title)
+    newWindow.geometry("400x400")
+    # Label(newWindow,text =content).pack()
+    text = Text(newWindow)
+    # text.grid(sticky=(N,E,S,W))
+    text.pack(fill=BOTH)
+    text.insert("1.0", content)
 
 # noticias Label
 ttk.Label(clasiFrame, text="Noticias para clasificar").grid(column=0, row=0, sticky=W)
@@ -310,7 +336,24 @@ model_input.grid(column=1, row=1, columnspan=2, sticky=(W, E))
 ttk.Button(clasiFrame, text="Abrir", command=getModel).grid(column=3, row=1, sticky=E)
 
 # Execute button
-ttk.Button(clasiFrame, text="Execute", default="active", command=clasify).grid(column=2, columnspan=2, row=2, sticky=(E,W))
+ttk.Button(clasiFrame, text="Execute", default="active", command=clasify).grid(column=3, row=2, sticky=(E,W,N))
+
+#define our column
+my_game = ttk.Treeview(clasiFrame)
+my_game['columns'] = ('name', 'odio',)
+
+# format our column
+my_game.column("#0", width=0,  stretch=NO)
+my_game.column("name",anchor=W, width=200)
+my_game.column("odio",anchor=CENTER,width=40)
+
+#Create Headings 
+my_game.heading("#0",text="",anchor=CENTER)
+my_game.heading("name",text="Name",anchor=W)
+my_game.heading("odio",text="Odio",anchor=CENTER)
+
+my_game.grid(column=0, columnspan=3, row=2, sticky=(E,W))
+my_game.bind("<Double-1>", handleTableClick)
 
 # growing
 clasiFrame.columnconfigure(0, weight=1, minsize=150)
