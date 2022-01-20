@@ -5,7 +5,7 @@ from tkinter import Text
 from tkinter import filedialog
 from tkinter import messagebox
 from IPython.display import display
-import os, pickle
+import os, pickle, time
 
 from pandas.core.frame import DataFrame
 
@@ -43,6 +43,7 @@ tabs.add(trainFrame, text="Entrenamiento")
 tabs.add(clasiFrame, text="Clasificacion")
 clf = ""
 tfidf_vectorizer = ""
+result = DataFrame()
 
 def getOdioDirectory():
     odio_input.delete(0, 'end')
@@ -273,7 +274,7 @@ def getModel():
     model_input.insert(0, filedialog.askopenfilename(title="Elige modelo del clasificador"))
 
 def handleTableClick(e):
-    filename, odio_pred = my_game.item(my_game.focus())["values"]
+    filename, odio_pred = tree.item(tree.focus())["values"]
     pred_text = " (no odio)"
     if odio_pred == "1.0": pred_text = " (odio)"
     noticia = "no podia encontrar la noticia"
@@ -284,13 +285,16 @@ def handleTableClick(e):
     openNewWindow(filename + pred_text, noticia)
     
 def clasify():
+    global result
+    clas_btn["text"] = "Calculando..."
+    root.update()
+    begin = time.time()
     df = pd.DataFrame({"name": [], "odio": [], "content":[]})
     df = df.append(generateDF(noticias_input.get(), 1))
 
     df['tokens'] = df['content'].map(tokenize)
     df['tokens'] = df['tokens'].map(removeStopwords)
     df['lemma'] = df['tokens'].map(stemming)
-    print(df.head())
     result = DataFrame()
     result["name"] = df["name"].copy()
 
@@ -301,27 +305,36 @@ def clasify():
         result["prediction"] = y_pred
         print(result)
 
+        tree.delete(*tree.get_children())
         #add data 
         for index, row in result.iterrows():
-            my_game.insert(parent='',index='end',iid=index,text='',values=(row["name"],row["prediction"]))
+            tree.insert(parent='',index='end',iid=index,text='',values=(row["name"],row["prediction"]))
     else:
         messagebox.showwarning("Modelo no encontrado","No podia cargar el modelo, checka la ruta")
+    end = time.time()
+    time_label["text"] = f"tiempo: {end - begin: .2f}s"
+    clas_btn["text"] = "Clasificar"
+    root.update_idletasks()
 
 def openNewWindow(title, content):
     newWindow = Toplevel(root)
     newWindow.title(title)
     newWindow.geometry("400x400")
-    # Label(newWindow,text =content).pack()
     text = Text(newWindow)
-    # text.grid(sticky=(N,E,S,W))
     text.pack(fill=BOTH)
     text.insert("1.0", content)
+
+def saveResults():
+    result.to_csv(results_input.get(), index=FALSE)
+    messagebox.showinfo("Resultos Guardados", "Resultos guardados en " + results_input.get())
 
 # noticias Label
 ttk.Label(clasiFrame, text="Noticias para clasificar").grid(column=0, row=0, sticky=W)
 # Odio path input
 noticias_path = StringVar()
 noticias_input = ttk.Entry(clasiFrame, textvariable=noticias_path)
+# noticias_input.insert(0, "/path/to/directory/")
+# noticias_input.bind("<FocusIn>", lambda args: noticias_input.delete('0', 'end'))
 noticias_input.grid(column=1, row=0, columnspan=2, sticky=(W, E))
 # noticias Button
 ttk.Button(clasiFrame, text="Abrir", command=getUnlabeledDirectory).grid(column=3, row=0, sticky=E)
@@ -331,29 +344,46 @@ ttk.Label(clasiFrame, text="Model clasificador:").grid(column=0, row=1, sticky=W
 # Model input
 model_path = StringVar()
 model_input = ttk.Entry(clasiFrame, textvariable=model_path)
+# model_input.insert(0, "/path/to/model.file")
+# model_input.bind("<FocusIn>", lambda args: model_input.delete('0', 'end'))
 model_input.grid(column=1, row=1, columnspan=2, sticky=(W, E))
 # model Button
 ttk.Button(clasiFrame, text="Abrir", command=getModel).grid(column=3, row=1, sticky=E)
 
 # Execute button
-ttk.Button(clasiFrame, text="Execute", default="active", command=clasify).grid(column=3, row=2, sticky=(E,W,N))
+clas_btn = ttk.Button(clasiFrame, text="Clasificar", default="active", command=clasify)
+clas_btn.grid(column=3, row=2, sticky=(E,W,N))
+
+# Time Label
+time_label = ttk.Label(clasiFrame, text="")
+time_label.grid(column=3, row=2, sticky=(E))
 
 #define our column
-my_game = ttk.Treeview(clasiFrame)
-my_game['columns'] = ('name', 'odio',)
+tree = ttk.Treeview(clasiFrame)
+tree['columns'] = ('name', 'odio',)
 
 # format our column
-my_game.column("#0", width=0,  stretch=NO)
-my_game.column("name",anchor=W, width=200)
-my_game.column("odio",anchor=CENTER,width=40)
+tree.column("#0", width=0,  stretch=NO)
+tree.column("name",anchor=W, width=200)
+tree.column("odio",anchor=CENTER,width=40)
 
 #Create Headings 
-my_game.heading("#0",text="",anchor=CENTER)
-my_game.heading("name",text="Name",anchor=W)
-my_game.heading("odio",text="Odio",anchor=CENTER)
+tree.heading("#0",text="",anchor=CENTER)
+tree.heading("name",text="Name",anchor=W)
+tree.heading("odio",text="Odio",anchor=CENTER)
 
-my_game.grid(column=0, columnspan=3, row=2, sticky=(E,W))
-my_game.bind("<Double-1>", handleTableClick)
+tree.grid(column=0, columnspan=3, row=2, sticky=(E,W))
+tree.bind("<Double-1>", handleTableClick)
+
+# save results
+ttk.Label(clasiFrame, text="Guardar Resultados").grid(column=0, row=3, sticky=W)
+results_var = StringVar()
+results_input = ttk.Entry(clasiFrame, textvariable=results_var)
+results_input.insert(0, "/my/project/results.csv")
+results_input.bind("<FocusIn>", lambda args: results_input.delete('0', 'end'))
+results_input.grid(column=1, row=3, columnspan=2, sticky=(W, E))
+# noticias Button
+ttk.Button(clasiFrame, text="Guardar", command=saveResults).grid(column=3, row=3, sticky=E)
 
 # growing
 clasiFrame.columnconfigure(0, weight=1, minsize=150)
