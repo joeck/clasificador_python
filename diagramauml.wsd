@@ -1,0 +1,14 @@
+@startuml
+actor user
+participant modelo
+participant clasificador
+database noticias
+participant excel
+
+user -> modelo: Usuario entrena modelo
+modelo -> clasificador: El modelo se usa como clasificador
+clasificador -> noticias: Clasifica noticias
+noticias -> excel: Se genera un output
+excel -> user: Se devuevle el excel al usuario
+
+@enduml
