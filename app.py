@@ -9,11 +9,7 @@ import os, pickle, time
 
 from pandas.core.frame import DataFrame
 
-import nltk
-nltk.download("wordnet")
-nltk.download("omw-1.4")
 from nltk.tokenize import RegexpTokenizer
-from nltk.stem import WordNetLemmatizer
 from nltk.stem.snowball import SnowballStemmer
 
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -35,7 +31,7 @@ class Articulo:
 
 root = Tk()
 
-_encoding="ISO-8859-1"
+_encoding="UTF-8"
 tabs = ttk.Notebook(root)
 tabs.pack(fill=BOTH, expand=TRUE)
 trainFrame = ttk.Frame(tabs)
@@ -63,10 +59,6 @@ def removeStopwords(x):
         prohibitedWords = text.split("\n")
         return [word for word in x if not word in prohibitedWords]
 
-def lemmatize(x):
- lemmatizer = WordNetLemmatizer()
- return ' '.join([lemmatizer.lemmatize(word) for word in x])
-
 def stemming(x):
     stemmer = SnowballStemmer(language="spanish")
     return ' '.join([stemmer.stem(word) for word in x])
@@ -75,10 +67,15 @@ def generateDF(path, label):
     df = pd.DataFrame({"name": [], "odio": [], "content":[]})
     files = os.listdir(path)
     for file in files:
-        file_path = os.path.join(path, file)
-        if os.path.isfile(file_path):
-            with open(file_path, 'r', encoding=_encoding) as f:
-                df = df.append({"name": file, "odio": label, "content": f.read()}, ignore_index=True)
+        try: 
+            file_path = os.path.join(path, file)
+            if os.path.isfile(file_path):
+                with open(file_path, 'r', encoding=_encoding) as f:
+                    df = df.append({"name": file, "odio": label, "content": f.read()}, ignore_index=True)
+        except:
+            pass
+            # Skip when reading error occurs
+
     return df
 
 def showPerformance(report, matrix):
