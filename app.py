@@ -22,13 +22,6 @@ from sklearn.metrics import classification_report, confusion_matrix
 
 import pandas as pd
 
-# Logica
-class Articulo:
-  def __init__(self, n, p, k):
-    self.file_name= n
-    self.path = p
-    self.keywords = k
-
 root = Tk()
 
 _encoding="UTF-8"
